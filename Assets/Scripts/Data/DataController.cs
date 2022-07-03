@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using System;
 
 public class DataController : MonoBehaviour
 {
@@ -69,6 +70,13 @@ public class DataController : MonoBehaviour
     }
 
     private void OnApplicationQuit() {
+        Instance.gameData.EndDate = DateTime.Now.ToString();
+        SaveGameData();
+    }
+
+    private void OnApplicationPause(bool pause)
+    {
+        Instance.gameData.EndDate = DateTime.Now.ToString();
         SaveGameData();
     }
 }
