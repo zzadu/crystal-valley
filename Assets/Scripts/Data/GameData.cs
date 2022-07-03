@@ -25,8 +25,8 @@ public class GameData
     public int userExp; // 0부터 시작
 
     // 구매 가능한 수룡이
-    public bool canBuy[52]; // {1, 0}
+    public bool[] canBuy; // {1, 0}, 52개
 
     // 수룡이 친밀도
-    public int intimacy[52];
+    public int[] intimacy;
 }
