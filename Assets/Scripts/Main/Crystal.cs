@@ -17,8 +17,17 @@ public class Crystal : MonoBehaviour
         crystalCnt = DataController.Instance.gameData.crystalCnt; // 수정
         amethystCnt = DataController.Instance.gameData.amethystCnt; // 자수정
 
-        crystalAddByLevel = DataController.Instance.gameData.crystalAddByLevel; // 탭 시 증가량
-        intervalAddByLevel = DataController.Instance.gameData.intervalAddByLevel; // 시간에 따른 증가량
+        // 탭 시 증가량
+        if (DataController.Instance.gameData.crystalAddByLevel == 0)
+            crystalAddByLevel = 10;
+        else
+            crystalAddByLevel = DataController.Instance.gameData.crystalAddByLevel;
+
+        // 시간에 따른 증가량
+        if (DataController.Instance.gameData.intervalAddByLevel == 0)
+            intervalAddByLevel = 1;
+        else
+            intervalAddByLevel = DataController.Instance.gameData.intervalAddByLevel;
 
         if (DataController.Instance.gameData.EndDate != null)
         {
@@ -36,6 +45,7 @@ public class Crystal : MonoBehaviour
     {
         crystalCnt += crystalAddByLevel;
         DataController.Instance.gameData.crystalCnt = crystalCnt;
+        print(crystalCnt);
     }
 
     // 게임 실행 중 시간에 따른 증가
@@ -62,7 +72,7 @@ public class Crystal : MonoBehaviour
     {
         DateTime endTime = DateTime.Parse(DataController.Instance.gameData.EndDate);
         TimeSpan time = endTime - DateTime.Now;
-        print(time);
+        print(crystalCnt);
 
         crystalCnt += (int)(time.Seconds * 0.1 * intervalAddByLevel);
     }
