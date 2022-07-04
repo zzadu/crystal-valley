@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Crystal : MonoBehaviour
 {
@@ -33,8 +34,7 @@ public class Crystal : MonoBehaviour
         {
             // 백그라운드 증가
             DateTime endTime = DateTime.Parse(DataController.Instance.gameData.EndDate);
-            TimeSpan time = endTime - DateTime.Now;
-            print(time.ToString());
+            TimeSpan time = DateTime.Now - endTime;
 
             crystalCnt += (int)(time.Seconds * 0.1 * intervalAddByLevel);
         }
@@ -43,9 +43,14 @@ public class Crystal : MonoBehaviour
     // 탭 증가
     private void OnMouseDown()
     {
-        crystalCnt += crystalAddByLevel;
-        DataController.Instance.gameData.crystalCnt = crystalCnt;
-        print(crystalCnt);
+        Vector2 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        RaycastHit2D hit = Physics2D.Raycast(pos, Camera.main.transform.forward);
+
+        if (!EventSystem.current.IsPointerOverGameObject() && hit.transform.gameObject.tag != "Suryong") // UI 클릭과 분리
+        {
+            crystalCnt += crystalAddByLevel;
+            DataController.Instance.gameData.crystalCnt = crystalCnt;
+        }
     }
 
     // 게임 실행 중 시간에 따른 증가
@@ -71,8 +76,7 @@ public class Crystal : MonoBehaviour
     private void OnApplicationFocus(bool focus)
     {
         DateTime endTime = DateTime.Parse(DataController.Instance.gameData.EndDate);
-        TimeSpan time = endTime - DateTime.Now;
-        print(crystalCnt);
+        TimeSpan time = DateTime.Now - endTime;
 
         crystalCnt += (int)(time.Seconds * 0.1 * intervalAddByLevel);
     }
