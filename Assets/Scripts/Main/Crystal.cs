@@ -48,6 +48,7 @@ public class Crystal : MonoBehaviour
 
         if (!EventSystem.current.IsPointerOverGameObject() && hit.transform.gameObject.tag != "Suryong") // UI 클릭과 분리
         {
+            print(crystalCnt);
             crystalCnt += crystalAddByLevel;
             DataController.Instance.gameData.crystalCnt = crystalCnt;
         }
