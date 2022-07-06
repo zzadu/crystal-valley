@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class UIFollowCharacter : MonoBehaviour
 {
     public GameObject suryongUI;
-    public GameObject suryongCanvas;
+    GameObject suryongCanvas;
     GameObject UIInstance;
 
     public static GameObject selection;
@@ -14,6 +14,7 @@ public class UIFollowCharacter : MonoBehaviour
 
     private void Awake()
     {
+        suryongCanvas = GameObject.Find("SuryongCanvas");
         gameObject.GetComponent<BoxCollider2D>().enabled = false;
     }
 
@@ -26,6 +27,12 @@ public class UIFollowCharacter : MonoBehaviour
         UIInstance.SetActive(false);
 
         gameObject.GetComponent<BoxCollider2D>().enabled = true;
+
+        // 친밀도 표시
+        UIInstance.transform.GetChild(5).GetChild(0).GetComponent<Text>().text = DataController.Instance.gameData.heart[int.Parse(gameObject.name) - 1].ToString();
+
+        // 음식 개수 표시
+        UIInstance.transform.GetChild(4).GetChild(0).GetComponent<Text>().text = DataController.Instance.gameData.foodCnt.ToString();
     }
 
     void Update()

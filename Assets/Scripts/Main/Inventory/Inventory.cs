@@ -12,7 +12,7 @@ public class Inventory : MonoBehaviour
     public GameObject content;
 
     public Sprite[] suryongs;
-    int[] slots = new int[36];
+    int[] slots;
 
     private void Awake()
     {
@@ -28,6 +28,10 @@ public class Inventory : MonoBehaviour
             inventoryCnt = DataController.Instance.gameData.inventoryCnt;
         }
 
+        // 초기화
+        // DataController.Instance.gameData.itemCntInInventory = 0;
+        // DataController.Instance.gameData.slots = new int[36];
+
         // 인벤토리에 있는 아이템 개수
         itemCntInInventory = DataController.Instance.gameData.itemCntInInventory;
 
@@ -35,11 +39,9 @@ public class Inventory : MonoBehaviour
         if (DataController.Instance.gameData.slots.Length == 0)
         {
             DataController.Instance.gameData.slots = new int[36];
+            DataController.Instance.SaveGameData();
         }
-        else
-        {
-            slots = DataController.Instance.gameData.slots;
-        }
+        slots = DataController.Instance.gameData.slots;
 
         for (int i = 0; i < inventoryCnt / 4; i++)
         {
@@ -56,6 +58,8 @@ public class Inventory : MonoBehaviour
             Color temp = slot.GetComponent<Image>().color;
             temp.a = 255;
             slot.GetComponent<Image>().color = temp;
+
+            slot.transform.parent.tag = "Untagged";
         }
     }
 

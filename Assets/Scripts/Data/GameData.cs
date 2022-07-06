@@ -38,8 +38,11 @@ public class GameData
     public int canBuy; // 0~51
 
     // 수룡이 친밀도
-    public int[] intimacy;
+    public int[] heart;
 
     // 마지막 접속 시간
     public string EndDate;
+
+    // 음식 개수
+    public int foodCnt;
 }

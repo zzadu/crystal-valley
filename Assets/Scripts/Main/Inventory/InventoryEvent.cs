@@ -71,11 +71,24 @@ public class InventoryEvent : MonoBehaviour
             DataController.Instance.gameData.itemCntInInventory = itemCntInInventory;
 
             // 홈 화면 수룡이 삭제
-            UIFollowCharacter.selection.SetActive(false); // 추후 프리팹으로 변경 시 Destroy
+            Destroy(UIFollowCharacter.selection); // 추후 프리팹으로 변경 시 Destroy
 
             DataController.Instance.SaveGameData();
 
             Destroy(gameObject);
         }
+        else
+        {
+            StartCoroutine(IShowAlert(gameObject.transform.parent.GetChild(0).gameObject, gameObject.transform.parent.GetChild(0).GetChild(0).gameObject));
+        }
+    }
+
+    IEnumerator IShowAlert(GameObject obj1, GameObject obj2)
+    {
+        obj1.SetActive(true);
+        obj2.SetActive(true);
+        yield return new WaitForSeconds(2f);
+        obj1.SetActive(false);
+        obj2.SetActive(false);
     }
 }
