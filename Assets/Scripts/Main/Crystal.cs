@@ -8,6 +8,7 @@ public class Crystal : MonoBehaviour
 {
     int crystalCnt;
     int amethystCnt;
+
     float interval = 10f;
 
     int crystalAddByLevel;
@@ -15,6 +16,8 @@ public class Crystal : MonoBehaviour
 
     private void Start()
     {
+        // DataController.Instance.gameData.crystalCnt = 0; // 초기화
+
         crystalCnt = DataController.Instance.gameData.crystalCnt; // 수정
         amethystCnt = DataController.Instance.gameData.amethystCnt; // 자수정
 
@@ -48,9 +51,9 @@ public class Crystal : MonoBehaviour
 
         if (!EventSystem.current.IsPointerOverGameObject() && hit.transform.gameObject.tag != "Suryong") // UI 클릭과 분리
         {
-            print(crystalCnt);
+           
             crystalCnt += crystalAddByLevel;
-            DataController.Instance.gameData.crystalCnt = crystalCnt;
+            print(crystalCnt);
         }
     }
 
@@ -69,8 +72,10 @@ public class Crystal : MonoBehaviour
     // 레벨업 시 증가량 증가
     public void LevelUp()
     {
-        DataController.Instance.gameData.crystalAddByLevel += 10;
-        DataController.Instance.gameData.intervalAddByLevel += 1;
+        crystalAddByLevel += 10;
+        DataController.Instance.gameData.crystalAddByLevel = crystalAddByLevel;
+        intervalAddByLevel += 1;
+        DataController.Instance.gameData.intervalAddByLevel = intervalAddByLevel;
     }
 
     // 백그라운드 중 시간에 따른 증가 - 마지막 접속 시간 현재 접속 시간 구해서 그만큼 재화 증가
@@ -80,5 +85,10 @@ public class Crystal : MonoBehaviour
         TimeSpan time = DateTime.Now - endTime;
 
         crystalCnt += (int)(time.Seconds * 0.1 * intervalAddByLevel);
+    }
+
+    private void Update()
+    {
+        DataController.Instance.gameData.crystalCnt = crystalCnt;
     }
 }

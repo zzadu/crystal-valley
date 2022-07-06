@@ -22,9 +22,13 @@ public class GameData
     // 메인에 배치된 수룡이 목록
 
     // 인벤토리 개수
-    public int inventoryCnt; // 기본 20개
-    
+    public int inventoryCnt; // 기본 12개 최대 36개
+
     // 인벤토리 목록
+    public int[] slots;
+
+    // 인벤토리에 있는 아이템 개수
+    public int itemCntInInventory;
 
     // 사용자
     public int userLevel; // 1부터 시작
