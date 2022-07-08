@@ -10,6 +10,7 @@ public class Heart : MonoBehaviour
 
     private void Awake()
     {
+        
         // 친밀도
         if (DataController.Instance.gameData.heart.Length == 0)
         {
@@ -18,6 +19,7 @@ public class Heart : MonoBehaviour
             DataController.Instance.SaveGameData();
         }
         heart = DataController.Instance.gameData.heart;
+        
 
         // 음식 개수
         foodCnt = DataController.Instance.gameData.foodCnt;

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,6 +17,14 @@ public class UIFollowCharacter : MonoBehaviour
     {
         suryongCanvas = GameObject.Find("SuryongCanvas");
         gameObject.GetComponent<BoxCollider2D>().enabled = false;
+
+        // Ä£¹Ðµµ
+        if (DataController.Instance.gameData.heart.Length == 0)
+        {
+            DataController.Instance.gameData.heart = new int[52];
+            DataController.Instance.gameData.heart = Enumerable.Repeat<int>(0, 52).ToArray<int>();
+            DataController.Instance.SaveGameData();
+        }
     }
 
     private void Start()
@@ -54,8 +63,7 @@ public class UIFollowCharacter : MonoBehaviour
 
         print("click!");
         UIInstance.SetActive(true);
-        print(selection.name);
-        select = int.Parse(selection.name);
+        select = int.Parse(selection.transform.gameObject.name);
     }
 
 }
