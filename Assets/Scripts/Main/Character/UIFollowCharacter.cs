@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class UIFollowCharacter : MonoBehaviour
@@ -56,14 +57,17 @@ public class UIFollowCharacter : MonoBehaviour
 
     private void OnMouseDown()
     {
-        Vector2 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        RaycastHit2D hit = Physics2D.Raycast(pos, Camera.main.transform.forward);
+        if (!EventSystem.current.IsPointerOverGameObject())
+        {
+            Vector2 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            RaycastHit2D hit = Physics2D.Raycast(pos, Camera.main.transform.forward);
 
-        selection = hit.collider.gameObject;
+            selection = hit.collider.gameObject;
 
-        print("click!");
-        UIInstance.SetActive(true);
-        select = int.Parse(selection.transform.gameObject.name);
+            print("click!");
+            UIInstance.SetActive(true);
+            select = int.Parse(selection.transform.gameObject.name);
+        }
     }
 
 }

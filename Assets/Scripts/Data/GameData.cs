@@ -16,10 +16,14 @@ public class GameData
     // 백그라운드 재화 획득
     public int intervalAddByLevel;
 
-    // 메인 배치 가능 개수
-    public int canPlace; // 기본 15개
+    // 메인에 배치 가능 개수
+    public int mainCnt;
+
+    // 메인에 있는 수룡이 개수
+    public int itemCntInMain; // 기본 15개 최대 30개, 5씩 증가
 
     // 메인에 배치된 수룡이 목록
+    public int[] mains;
 
     // 인벤토리 개수
     public int inventoryCnt; // 기본 12개 최대 36개

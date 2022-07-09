@@ -15,6 +15,9 @@ public class InventoryEvent : MonoBehaviour
     public static int select;
     public static int slotNum;
 
+    int itemCntInMain;
+    int[] mains = new int[40];
+
     private void Start()
     {
         // 인벤토리 개수
@@ -38,6 +41,19 @@ public class InventoryEvent : MonoBehaviour
         else { 
             slots = DataController.Instance.gameData.slots; 
         }
+
+        // 홈에 있는 아이템 개수
+        itemCntInMain = DataController.Instance.gameData.itemCntInMain;
+
+        // 홈 아이템 목록
+        if (DataController.Instance.gameData.mains.Length == 0)
+        {
+            DataController.Instance.gameData.mains = new int[40];
+        }
+        else
+        {
+            mains = DataController.Instance.gameData.mains;
+        }
     }
 
     public void InventoryToHomePopup()
@@ -56,11 +72,9 @@ public class InventoryEvent : MonoBehaviour
     {
         if (itemCntInInventory < inventoryCnt)
         {
-            print(itemCntInInventory);
             GameObject content = GameObject.Find("InventoryUI").transform.GetChild(1).GetChild(1).GetChild(0).gameObject;
             GameObject slot = content.transform.GetChild(itemCntInInventory / 4 + 1).GetChild(itemCntInInventory % 4).GetChild(0).gameObject; // Line, Slot, ItemImage 순서
 
-            print(UIFollowCharacter.select);
             // 해당 슬롯 sprite 변경
             slot.GetComponent<Image>().sprite = suryongs[UIFollowCharacter.select - 1];
             Color temp = slot.GetComponent<Image>().color;
@@ -76,10 +90,25 @@ public class InventoryEvent : MonoBehaviour
 
             // 인벤토리 안 아이템 개수 변경
             itemCntInInventory = DataController.Instance.gameData.itemCntInInventory;
-            print(itemCntInInventory);
             itemCntInInventory++;
-            print(itemCntInInventory);
             DataController.Instance.gameData.itemCntInInventory = itemCntInInventory;
+            print(DataController.Instance.gameData.itemCntInInventory);
+
+            int remove = 0;
+            // 홈화면 개수 변경
+            for (int i = 0; i < mains.Length - 1; i++)
+            {
+                if (mains[i] == UIFollowCharacter.select)
+                    remove = i;
+            }
+
+            for (int i = remove; i < mains.Length - 1; i++)
+            {
+                mains[i] = mains[i + 1];
+            }
+            itemCntInMain--;
+            DataController.Instance.gameData.itemCntInMain = itemCntInMain;
+            DataController.Instance.gameData.mains = mains;
 
             // 홈 화면 수룡이 삭제
             Destroy(UIFollowCharacter.selection); // 추후 프리팹으로 변경 시 Destroy
