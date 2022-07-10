@@ -14,11 +14,12 @@ public class Place : MonoBehaviour
 
     private void Awake()
     {
-        // 초기화
+        // 메인 초기화
         // DataController.Instance.gameData.mains = new int[40];
         // DataController.Instance.gameData.itemCntInMain = 0;
 
         // 홈 아이템 개수
+        print(DataController.Instance.gameData.itemCntInMain);
         itemCntInMain = DataController.Instance.gameData.itemCntInMain;
 
         // 홈 아이템 목록

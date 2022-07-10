@@ -1092,8 +1092,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e682f38782fad89489cded7515071597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  showButton: {fileID: 0}
-  scrollView: {fileID: 0}
+  scrollView: {fileID: 1294195899055106837}
+  content: {fileID: 0}
+  ShopButton: {fileID: 0}
+  InventoryButton: {fileID: 0}
+  suryongs: []
 --- !u!114 &3773075458206032781
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1140,7 +1143,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 850128135245055995}
         m_TargetAssemblyTypeName: CloseUI, Assembly-CSharp
-        m_MethodName: Close
+        m_MethodName: ClosePopup
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

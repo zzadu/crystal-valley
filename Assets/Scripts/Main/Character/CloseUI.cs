@@ -5,9 +5,10 @@ using UnityEngine.UI;
 
 public class CloseUI : MonoBehaviour
 {
-    public GameObject showButton;
     public GameObject scrollView;
     public GameObject content;
+    public GameObject ShopButton;
+    public GameObject InventoryButton;
 
     int itemCntInInventory;
 
@@ -32,6 +33,9 @@ public class CloseUI : MonoBehaviour
     {
         scrollView.SetActive(true);
 
+        itemCntInInventory = DataController.Instance.gameData.itemCntInInventory;
+        slots = DataController.Instance.gameData.slots;
+
         // 인벤토리 sprite 변경
         for (int i = 0; i < itemCntInInventory; i++)
         {
@@ -45,15 +49,18 @@ public class CloseUI : MonoBehaviour
         }
 
         gameObject.SetActive(false);
-    }
-
-    public void showButtons()
-    {
-        showButton.SetActive(true);
+        ShopButton.SetActive(false);
     }
 
     public void Close()
     {
-        gameObject.transform.parent.gameObject.SetActive(false);
+        scrollView.SetActive(false);
+        InventoryButton.SetActive(true);
+        ShopButton.SetActive(true);
+    }
+
+    public void ClosePopup()
+    {
+        scrollView.SetActive(false);
     }
 }

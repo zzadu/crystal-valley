@@ -106,6 +106,7 @@ public class InventoryEvent : MonoBehaviour
             {
                 mains[i] = mains[i + 1];
             }
+            itemCntInMain = DataController.Instance.gameData.itemCntInMain;
             itemCntInMain--;
             DataController.Instance.gameData.itemCntInMain = itemCntInMain;
             DataController.Instance.gameData.mains = mains;

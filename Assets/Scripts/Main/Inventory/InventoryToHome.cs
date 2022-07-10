@@ -44,7 +44,7 @@ public class InventoryToHome : MonoBehaviour
         // 메인 배치 가능 수
         if (DataController.Instance.gameData.mainCnt == 0)
         {
-            DataController.Instance.gameData.mainCnt = 15;
+            DataController.Instance.gameData.mainCnt = 10;
         }
         else
         {
@@ -108,8 +108,6 @@ public class InventoryToHome : MonoBehaviour
                 {
                     GameObject slot = content.transform.GetChild(i / 4 + 1).GetChild(i % 4).GetChild(0).gameObject;
 
-
-                    print(slots[i] - 1);
                     slot.GetComponent<Image>().sprite = suryongs[slots[i] - 1];
                     Color temp = slot.GetComponent<Image>().color;
                     temp.a = 255;
@@ -125,9 +123,13 @@ public class InventoryToHome : MonoBehaviour
                 }
             }
 
+            itemCntInMain = DataController.Instance.gameData.itemCntInMain;
+            print(itemCntInMain);
             // 홈 배치 목록 삽입
-            mains[itemCntInMain++] = InventoryEvent.select;
+            mains[itemCntInMain] = InventoryEvent.select;
+            itemCntInMain++;
             DataController.Instance.gameData.mains = mains;
+            print(itemCntInMain);
             DataController.Instance.gameData.itemCntInMain = itemCntInMain;
             DataController.Instance.SaveGameData();
         }

@@ -27,7 +27,7 @@ public class Inventory : MonoBehaviour
             inventoryCnt = DataController.Instance.gameData.inventoryCnt;
         }
 
-        // 초기화
+        // 인벤토리 초기화
         // DataController.Instance.gameData.itemCntInInventory = 0;
         // DataController.Instance.gameData.slots = new int[36];
 
