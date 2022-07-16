@@ -32,6 +32,8 @@ public class InventoryEvent : MonoBehaviour
 
     public void CharacterToInventory()
     {
+        DataController.Instance.LoadGameData();
+
         itemCntInInventory = DataController.Instance.gameData.itemCntInInventory;
         inventoryCnt = DataController.Instance.gameData.inventoryCnt;
 

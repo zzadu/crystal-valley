@@ -23,8 +23,6 @@ public class InventoryToHome : MonoBehaviour
     public GameObject NoSlot;
     public GameObject MainAlert;
 
-    public GameObject popup;
-
     private void Awake()
     {
         // 랜덤 생성 범위
@@ -33,6 +31,8 @@ public class InventoryToHome : MonoBehaviour
 
     public void InventoryTo()
     {
+        DataController.Instance.LoadGameData();
+
         // 홈에 있는 아이템 개수
         itemCntInMain = DataController.Instance.gameData.itemCntInMain;
         // 메인 배치 가능 수
@@ -109,8 +109,6 @@ public class InventoryToHome : MonoBehaviour
         else
         {
             StartCoroutine(IShowAlert(NoSlot, MainAlert));
-            popup.SetActive(false);
-            
         }
     }
 

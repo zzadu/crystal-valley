@@ -31,6 +31,8 @@ public class UIFollowCharacter : MonoBehaviour
 
     private void Start()
     {
+        DataController.Instance.LoadGameData();
+
         // 팝업 UI 인스턴스화
         UIInstance = Instantiate(suryongUI, gameObject.transform.position + new Vector3(0, 3f, 0), transform.rotation) as GameObject;
         UIInstance.transform.SetParent(suryongCanvas.transform);
@@ -53,7 +55,6 @@ public class UIFollowCharacter : MonoBehaviour
             UIInstance.transform.position = Camera.main.WorldToScreenPoint(gameObject.transform.position + new Vector3(0, 2f, 0));
         else
             UIInstance.transform.position = Camera.main.WorldToScreenPoint(gameObject.transform.position + new Vector3(0, -2f, 0));
-
     }
 
     private void OnMouseDown()
@@ -64,6 +65,8 @@ public class UIFollowCharacter : MonoBehaviour
             RaycastHit2D hit = Physics2D.Raycast(pos, Camera.main.transform.forward);
 
             selection = hit.collider.gameObject;
+
+            UIInstance.transform.GetChild(5).GetChild(0).GetComponent<Text>().text = DataController.Instance.gameData.heart[int.Parse(gameObject.name) - 1].ToString();
 
             print("click!");
             UIInstance.SetActive(true);

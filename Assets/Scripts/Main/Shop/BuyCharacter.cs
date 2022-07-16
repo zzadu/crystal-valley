@@ -14,11 +14,11 @@ public class BuyCharacter : MonoBehaviour
 
     int inventoryCnt;
     int itemCntInInventory;
-    int[] slots = new int[36];
+    int[] slots;
 
     int mainCnt;
     int itemCntInMain;
-    int[] mains = new int[40];
+    int[] mains;
 
     public GameObject NoSlot;
     public GameObject InventoryAlert;
@@ -29,6 +29,8 @@ public class BuyCharacter : MonoBehaviour
 
     int crystalCnt;
     public Text crystalDisplay;
+
+    int[] heart;
 
     private void Start()
     {
@@ -44,6 +46,8 @@ public class BuyCharacter : MonoBehaviour
         itemCntInMain = DataController.Instance.gameData.itemCntInMain;
         mainCnt = DataController.Instance.gameData.mainCnt;
         crystalCnt = DataController.Instance.gameData.crystalCnt;
+        heart = DataController.Instance.gameData.heart;
+        mains = DataController.Instance.gameData.mains; 
 
         int price = Int32.Parse(Price.GetComponent<Text>().text);
 
@@ -78,6 +82,10 @@ public class BuyCharacter : MonoBehaviour
 
                 crystalCnt -= price;
 
+                // 친밀도 증가
+                heart[Int32.Parse(gameObject.name) - 1] += 10;
+
+                DataController.Instance.gameData.heart = heart;
                 DataController.Instance.gameData.slots = slots;
                 DataController.Instance.gameData.itemCntInInventory = itemCntInInventory;
             }
@@ -114,6 +122,11 @@ public class BuyCharacter : MonoBehaviour
                 // 홈 배치 목록 삽입
                 mains[itemCntInMain] = Int32.Parse(gameObject.name);
                 itemCntInMain++;
+
+                // 친밀도 증가
+                DataController.Instance.gameData.heart[Int32.Parse(gameObject.name) - 1] += 10;
+
+                DataController.Instance.gameData.heart = heart;
 
                 DataController.Instance.gameData.mains = mains;
                 DataController.Instance.gameData.itemCntInMain = itemCntInMain;
