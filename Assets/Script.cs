@@ -2,14 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class intimacy_purchase : MonoBehaviour
+public class Script : MonoBehaviour
 {
-    
-
     // Start is called before the first frame update
     void Start()
     {
-        
         
     }
 
@@ -18,6 +15,4 @@ public class intimacy_purchase : MonoBehaviour
     {
         
     }
-
-  
 }
