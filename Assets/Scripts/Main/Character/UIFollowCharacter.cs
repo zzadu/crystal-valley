@@ -55,6 +55,13 @@ public class UIFollowCharacter : MonoBehaviour
             UIInstance.transform.position = Camera.main.WorldToScreenPoint(gameObject.transform.position + new Vector3(0, 2f, 0));
         else
             UIInstance.transform.position = Camera.main.WorldToScreenPoint(gameObject.transform.position + new Vector3(0, -2f, 0));
+
+        if (gameObject.transform.position.x > 3.1f)
+            UIInstance.transform.position = Camera.main.WorldToScreenPoint(gameObject.transform.position + new Vector3(-2f, 2f, 0));
+        else if (gameObject.transform.position.x > 2.1f)
+            UIInstance.transform.position = Camera.main.WorldToScreenPoint(gameObject.transform.position + new Vector3(-1f, 2f, 0));
+        else if (gameObject.transform.position.x < -2.1f)
+            UIInstance.transform.position = Camera.main.WorldToScreenPoint(gameObject.transform.position + new Vector3(1f, 2f, 0));
     }
 
     private void OnMouseDown()
