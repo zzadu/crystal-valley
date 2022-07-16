@@ -15,7 +15,7 @@ public class HeartPurchase : MonoBehaviour
 
     public GameObject Button;
   
-    public void PurchaseByHeart(int item)
+    public void Update()
     {
         DataController.Instance.LoadGameData();
 
