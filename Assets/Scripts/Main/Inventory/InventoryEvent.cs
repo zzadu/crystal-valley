@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 
 public class InventoryEvent : MonoBehaviour
 {
-    int inventoryCnt = 12;
+    int inventoryCnt;
     int itemCntInInventory;
 
     public Sprite[] suryongs;
@@ -17,44 +17,6 @@ public class InventoryEvent : MonoBehaviour
 
     int itemCntInMain;
     int[] mains = new int[40];
-
-    private void Start()
-    {
-        // 인벤토리 개수
-        if (DataController.Instance.gameData.inventoryCnt == 0)
-        {
-            DataController.Instance.gameData.inventoryCnt = inventoryCnt;
-        }
-        else
-        {
-            inventoryCnt = DataController.Instance.gameData.inventoryCnt;
-        }
-
-        // 인벤토리에 있는 아이템 개수
-        itemCntInInventory = DataController.Instance.gameData.itemCntInInventory;
-
-        // 인벤토리 아이템 목록
-        if (DataController.Instance.gameData.slots.Length == 0)
-        {
-            DataController.Instance.gameData.slots = new int[36];
-        }
-        else { 
-            slots = DataController.Instance.gameData.slots; 
-        }
-
-        // 홈에 있는 아이템 개수
-        itemCntInMain = DataController.Instance.gameData.itemCntInMain;
-
-        // 홈 아이템 목록
-        if (DataController.Instance.gameData.mains.Length == 0)
-        {
-            DataController.Instance.gameData.mains = new int[40];
-        }
-        else
-        {
-            mains = DataController.Instance.gameData.mains;
-        }
-    }
 
     public void InventoryToHomePopup()
     {
@@ -70,6 +32,9 @@ public class InventoryEvent : MonoBehaviour
 
     public void CharacterToInventory()
     {
+        itemCntInInventory = DataController.Instance.gameData.itemCntInInventory;
+        inventoryCnt = DataController.Instance.gameData.inventoryCnt;
+
         if (itemCntInInventory < inventoryCnt)
         {
             GameObject content = GameObject.Find("InventoryUI").transform.GetChild(1).GetChild(1).GetChild(0).gameObject;
@@ -85,16 +50,15 @@ public class InventoryEvent : MonoBehaviour
             slot.tag = "Untagged";
 
             // 인벤토리 내용물 변경
+            slots = DataController.Instance.gameData.slots;
             slots[itemCntInInventory] = UIFollowCharacter.select;
-            DataController.Instance.gameData.slots = slots;
 
             // 인벤토리 안 아이템 개수 변경
-            itemCntInInventory = DataController.Instance.gameData.itemCntInInventory;
             itemCntInInventory++;
-            DataController.Instance.gameData.itemCntInInventory = itemCntInInventory;
-            print(DataController.Instance.gameData.itemCntInInventory);
 
             int remove = 0;
+            mains = DataController.Instance.gameData.mains;
+
             // 홈화면 개수 변경
             for (int i = 0; i < mains.Length - 1; i++)
             {
@@ -108,12 +72,14 @@ public class InventoryEvent : MonoBehaviour
             }
             itemCntInMain = DataController.Instance.gameData.itemCntInMain;
             itemCntInMain--;
-            DataController.Instance.gameData.itemCntInMain = itemCntInMain;
-            DataController.Instance.gameData.mains = mains;
 
             // 홈 화면 수룡이 삭제
             Destroy(UIFollowCharacter.selection); // 추후 프리팹으로 변경 시 Destroy
 
+            DataController.Instance.gameData.slots = slots;
+            DataController.Instance.gameData.itemCntInInventory = itemCntInInventory;
+            DataController.Instance.gameData.itemCntInMain = itemCntInMain;
+            DataController.Instance.gameData.mains = mains;
             DataController.Instance.SaveGameData();
 
             Destroy(gameObject);

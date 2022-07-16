@@ -20,12 +20,13 @@ public class UIFollowCharacter : MonoBehaviour
         gameObject.GetComponent<BoxCollider2D>().enabled = false;
 
         // Ä£¹Ðµµ
+        /*
         if (DataController.Instance.gameData.heart.Length == 0)
         {
             DataController.Instance.gameData.heart = new int[52];
             DataController.Instance.gameData.heart = Enumerable.Repeat<int>(0, 52).ToArray<int>();
             DataController.Instance.SaveGameData();
-        }
+        } */
     }
 
     private void Start()

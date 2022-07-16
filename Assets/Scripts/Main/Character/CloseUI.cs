@@ -12,6 +12,8 @@ public class CloseUI : MonoBehaviour
 
     int itemCntInInventory;
 
+    public GameObject[] Alerts;
+
     public Sprite[] suryongs;
     int[] slots;
 
@@ -54,6 +56,11 @@ public class CloseUI : MonoBehaviour
 
     public void Close()
     {
+        for (int i = 0; i < Alerts.Length; i++)
+        {
+            Alerts[i].SetActive(false);
+        }
+
         scrollView.SetActive(false);
         InventoryButton.SetActive(true);
         ShopButton.SetActive(true);

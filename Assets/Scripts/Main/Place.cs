@@ -10,27 +10,20 @@ public class Place : MonoBehaviour
     BoxCollider2D collider;
 
     int itemCntInMain;
-    int[] mains = new int[40];
+    int[] mains;
 
-    private void Awake()
+    private void Start()
     {
         // 메인 초기화
         // DataController.Instance.gameData.mains = new int[40];
         // DataController.Instance.gameData.itemCntInMain = 0;
 
+        DataController.Instance.LoadGameData();
         // 홈 아이템 개수
-        print(DataController.Instance.gameData.itemCntInMain);
         itemCntInMain = DataController.Instance.gameData.itemCntInMain;
 
         // 홈 아이템 목록
-        if (DataController.Instance.gameData.mains.Length == 0)
-        {
-            DataController.Instance.gameData.mains = new int[40];
-        }
-        else
-        {
-            mains = DataController.Instance.gameData.mains;
-        }
+        mains = DataController.Instance.gameData.mains;
 
         // 랜덤 생성 범위
         collider = range.GetComponent<BoxCollider2D>();
@@ -46,9 +39,10 @@ public class Place : MonoBehaviour
 
             x = Random.Range(-x / 2, x / 2);
             y = Random.Range(-y / 2, y / 2);
-            Vector3 randomPos = new Vector3(x, y, -1);
+            Vector3 randomPos = new Vector3(x, y);
 
             Vector3 spawnPos = pos + randomPos;
+            spawnPos.z = -2;
             prefab.transform.position = spawnPos;
             prefab.gameObject.name = mains[i].ToString();
         }

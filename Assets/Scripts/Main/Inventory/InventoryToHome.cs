@@ -23,50 +23,21 @@ public class InventoryToHome : MonoBehaviour
     public GameObject NoSlot;
     public GameObject MainAlert;
 
+    public GameObject popup;
+
     private void Awake()
     {
         // 랜덤 생성 범위
         collider = range.GetComponent<BoxCollider2D>();
-
-        // 인벤토리에 있는 아이템 개수
-        itemCntInInventory = DataController.Instance.gameData.itemCntInInventory;
-
-        // 인벤토리 아이템 목록
-        if (DataController.Instance.gameData.slots.Length == 0)
-        {
-            DataController.Instance.gameData.slots = new int[36];
-        }
-        else
-        {
-            slots = DataController.Instance.gameData.slots;
-        }
-
-        // 메인 배치 가능 수
-        if (DataController.Instance.gameData.mainCnt == 0)
-        {
-            DataController.Instance.gameData.mainCnt = 10;
-        }
-        else
-        {
-            mainCnt = DataController.Instance.gameData.mainCnt;
-        }
-
-        // 홈에 있는 아이템 개수
-        itemCntInMain = DataController.Instance.gameData.itemCntInMain;
-
-        // 홈 아이템 목록
-        if (DataController.Instance.gameData.mains.Length == 0)
-        {
-            DataController.Instance.gameData.mains = new int[40];
-        }
-        else
-        {
-            mains = DataController.Instance.gameData.mains;
-        }
     }
 
     public void InventoryTo()
     {
+        // 홈에 있는 아이템 개수
+        itemCntInMain = DataController.Instance.gameData.itemCntInMain;
+        // 메인 배치 가능 수
+        mainCnt = DataController.Instance.gameData.mainCnt;
+
         if (itemCntInMain < mainCnt)
         {
             // 수룡이 위치 랜덤 생성
@@ -83,8 +54,9 @@ public class InventoryToHome : MonoBehaviour
             // 인벤토리 제거
             itemCntInInventory = DataController.Instance.gameData.itemCntInInventory;
             itemCntInInventory--;
-            DataController.Instance.gameData.itemCntInInventory = itemCntInInventory;
 
+            // 인벤토리 아이템 목록
+            slots = DataController.Instance.gameData.slots;
             for (int i = InventoryEvent.slotNum; i < slots.Length - 1; i++)
             {
                 slots[i] = slots[i + 1];
@@ -96,8 +68,6 @@ public class InventoryToHome : MonoBehaviour
 
             // 클론 이름 변경
             su.name = (InventoryEvent.select).ToString();
-
-            DataController.Instance.SaveGameData();
 
             gameObject.SetActive(false);
 
@@ -124,18 +94,23 @@ public class InventoryToHome : MonoBehaviour
             }
 
             itemCntInMain = DataController.Instance.gameData.itemCntInMain;
-            print(itemCntInMain);
+            mains = DataController.Instance.gameData.mains;
+
             // 홈 배치 목록 삽입
             mains[itemCntInMain] = InventoryEvent.select;
             itemCntInMain++;
+
+            DataController.Instance.gameData.itemCntInInventory = itemCntInInventory;
+            DataController.Instance.gameData.slots = slots;
             DataController.Instance.gameData.mains = mains;
-            print(itemCntInMain);
             DataController.Instance.gameData.itemCntInMain = itemCntInMain;
             DataController.Instance.SaveGameData();
         }
         else
         {
             StartCoroutine(IShowAlert(NoSlot, MainAlert));
+            popup.SetActive(false);
+            
         }
     }
 

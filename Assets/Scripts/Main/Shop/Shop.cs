@@ -10,6 +10,8 @@ public class Shop : MonoBehaviour
     public GameObject ShopButton;
     public GameObject InventoryButton;
 
+    public GameObject[] Alerts;
+
     public void OpenShop()
     {
         ShopButton.SetActive(false);
@@ -19,12 +21,22 @@ public class Shop : MonoBehaviour
 
     public void CharacterToItem()
     {
+        for (int i = 0; i < Alerts.Length; i++)
+        {
+            Alerts[i].SetActive(false);
+        }
+
         CharacterShopUI.SetActive(false);
         ItemShopUI.SetActive(true);
     }
 
     public void ItemToCharacter()
     {
+        for (int i = 0; i < Alerts.Length; i++)
+        {
+            Alerts[i].SetActive(false);
+        }
+
         ItemShopUI.SetActive(false);
         CharacterShopUI.SetActive(true);
     }

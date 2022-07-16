@@ -15,24 +15,10 @@ public class Inventory : MonoBehaviour
 
     private void Awake()
     {
-        print(DataController.Instance.gameData.inventoryCnt);
-
-        // 인벤토리 개수
-        if (DataController.Instance.gameData.inventoryCnt == 0)
-        {
-            DataController.Instance.gameData.inventoryCnt = inventoryCnt;
-        }
-        else
-        {
-            inventoryCnt = DataController.Instance.gameData.inventoryCnt;
-        }
 
         // 인벤토리 초기화
         // DataController.Instance.gameData.itemCntInInventory = 0;
         // DataController.Instance.gameData.slots = new int[36];
-
-        // 인벤토리에 있는 아이템 개수
-        itemCntInInventory = DataController.Instance.gameData.itemCntInInventory;
 
         for (int i = 0; i < inventoryCnt / 4; i++)
         {
@@ -44,6 +30,8 @@ public class Inventory : MonoBehaviour
 
     public void AddSlot()
     {
+        inventoryCnt = DataController.Instance.gameData.inventoryCnt;
+
         if (inventoryCnt <= 24) // 최대 칸의 개수를 넘지 않도록 설정
         {
             inventoryCnt += 12;
