@@ -83,7 +83,10 @@ public class BuyCharacter : MonoBehaviour
                 crystalCnt -= price;
 
                 // 친밀도 증가
-                heart[Int32.Parse(gameObject.name) - 1] += 10;
+                if (heart[Int32.Parse(gameObject.name) - 1] <= 90)
+                {
+                    heart[Int32.Parse(gameObject.name) - 1] += 10;
+                }
 
                 DataController.Instance.gameData.heart = heart;
                 DataController.Instance.gameData.slots = slots;
@@ -124,7 +127,10 @@ public class BuyCharacter : MonoBehaviour
                 itemCntInMain++;
 
                 // 친밀도 증가
-                DataController.Instance.gameData.heart[Int32.Parse(gameObject.name) - 1] += 10;
+                if (heart[Int32.Parse(gameObject.name) - 1] <= 90)
+                {
+                    heart[Int32.Parse(gameObject.name) - 1] += 10;
+                }
 
                 DataController.Instance.gameData.heart = heart;
 

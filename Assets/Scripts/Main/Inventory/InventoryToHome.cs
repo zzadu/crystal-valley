@@ -47,9 +47,10 @@ public class InventoryToHome : MonoBehaviour
 
             x = Random.Range(-x / 2, x / 2);
             y = Random.Range(-y / 2, y / 2);
-            Vector3 randomPos = new Vector3(x, y, -1);
+            Vector3 randomPos = new Vector3(x, y);
 
             Vector3 spawnPos = pos + randomPos;
+            spawnPos.z = -2;
 
             // 인벤토리 제거
             itemCntInInventory = DataController.Instance.gameData.itemCntInInventory;
