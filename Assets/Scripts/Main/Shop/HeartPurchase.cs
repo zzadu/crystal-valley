@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class HeartPurchase : MonoBehaviour
 {
-    int[] heart; // 친밀도
-    int canBuy; // 구매 가능한 수룡이
-  
-
     // Start is called before the first frame update
     void Start()
     {
@@ -15,25 +11,27 @@ public class HeartPurchase : MonoBehaviour
         
     }
 
-    public bool heart_check() // 사용자가 구매한 수룡이들의 호감도가 일정 값 이상인지 체크
+    public bool HeartCheck() // 사용자가 구매한 수룡이들의 호감도가 일정 값 이상인지 체크
     {
+        DataController.Instance.LoadGameData();
         int count = 0;
-        int userHave = canBuy - 1; // 현재 사용자가 소유한 수룡이 = 구매가능한 수룡이 -1 번호
+        
 
-        while(count == userHave)
+        while(count == DataController.Instance.gameData.canBuy - 1) // 현재 사용자가 소유한 수룡이 = 구매가능한 수룡이 -1 번호
         {
-            if (heart[count] < 90) // 친밀도 90 미만이면 false 반환
+            if (DataController.Instance.gameData.heart[count] < 70) // 친밀도 70 미만이면 false 반환
             {
                 return false;
             }
+            count++;
         }
         return true;
     }
 
-    public void heart_purchase(int item)
+    public void PurchaseByHeart(int item)
     {
-        if (heart_check()) // heart_check 결과가 true면
-            canBuy += 1; // 구매 가능한 수룡이 숫자 증가
+        if (HeartCheck()) // HeartCheck 결과가 true면
+            DataController.Instance.gameData.canBuy += 1; // 구매 가능한 수룡이 숫자 증가
     }
   
 }
