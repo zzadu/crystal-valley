@@ -15,18 +15,20 @@ public class HeartPurchase : MonoBehaviour
 
     public GameObject Button;
   
-    public void Update()
+    public void OnEnable()
     {
         DataController.Instance.LoadGameData();
 
-        
-        Button.GetComponent<Button>().interactable = false; // 버튼 비활성화
 
-        if (DataController.Instance.gameData.heart[Int32.Parse(gameObject.name) - 2] >= 70) // 이전 아이템 호감도 70 이상일 때
+        if (Button.transform.parent.name != "1")
         {
-            Button.GetComponent<Button>().interactable = true; // 버튼 활성화
-        }
+            Button.GetComponent<Button>().interactable = false; // 버튼 비활성화
 
+            if (DataController.Instance.gameData.heart[Int32.Parse(gameObject.name) - 2] >= 70) // 이전 아이템 호감도 70 이상일 때
+            {
+                Button.GetComponent<Button>().interactable = true; // 버튼 활성화
+            }
+        }
 
     }
 }

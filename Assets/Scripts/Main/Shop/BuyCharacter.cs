@@ -6,8 +6,8 @@ using UnityEngine.UI;
 
 public class BuyCharacter : MonoBehaviour
 {
-    public GameObject[] suryongPrefabs;
-    public Sprite[] suryongs;
+    public GameObject suryongPrefabs;
+    public Sprite suryongs;
 
     public GameObject range;
     BoxCollider2D collider;
@@ -65,7 +65,7 @@ public class BuyCharacter : MonoBehaviour
                 GameObject slot = content.transform.GetChild(itemCntInInventory / 4 + 1).GetChild(itemCntInInventory % 4).GetChild(0).gameObject; // Line, Slot, ItemImage 순서
 
                 // 해당 슬롯 sprite 변경
-                slot.GetComponent<Image>().sprite = suryongs[Int32.Parse(gameObject.name) - 1];
+                slot.GetComponent<Image>().sprite = suryongs;
                 Color temp = slot.GetComponent<Image>().color;
                 temp.a = 255;
                 slot.GetComponent<Image>().color = temp;
@@ -114,7 +114,7 @@ public class BuyCharacter : MonoBehaviour
                 Vector3 spawnPos = pos + randomPos;
                 spawnPos.z = -2;
 
-                GameObject sr = Instantiate(suryongPrefabs[Int32.Parse(gameObject.name) - 1]);
+                GameObject sr = Instantiate(suryongPrefabs);
                 sr.transform.position = spawnPos;
 
                 crystalCnt -= price;

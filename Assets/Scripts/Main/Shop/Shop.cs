@@ -17,6 +17,11 @@ public class Shop : MonoBehaviour
         ShopButton.SetActive(false);
         InventoryButton.SetActive(false);
         CharacterShopUI.SetActive(true);
+
+        for (int i = 0; i < Alerts.Length; i++)
+        {
+            Alerts[i].SetActive(false);
+        }
     }
 
     public void CharacterToItem()
