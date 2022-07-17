@@ -10,7 +10,8 @@ public class Volume : MonoBehaviour
     [SerializeField] public AudioSource backGroundMusic;
 
     private float backVolume = 1f;
-
+    
+    //bgm 볼륨조절 슬라이더
     private void Start()
     {
         volumeSlider.value = backVolume;
@@ -19,6 +20,13 @@ public class Volume : MonoBehaviour
     void Update()
     {
         backGroundMusic.volume = volumeSlider.value;
+    }
+     
+    //bgm on/off버튼 함수
+    public void musicOnOff()
+    {
+        if (backGroundMusic.isPlaying) backGroundMusic.Pause();
+        else backGroundMusic.Play();
     }
 }
 
