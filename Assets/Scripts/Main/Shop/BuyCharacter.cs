@@ -32,6 +32,8 @@ public class BuyCharacter : MonoBehaviour
 
     int[] heart;
 
+    int userExp;
+
     private void Start()
     {
         collider = range.GetComponent<BoxCollider2D>();
@@ -57,7 +59,7 @@ public class BuyCharacter : MonoBehaviour
         }
         else if (itemCntInMain >= mainCnt) // 홈만 꽉 찼을 때 -> 인벤토리 이동
         {
-            if (crystalCnt - price >= 0)
+            if (crystalCnt - price >= 0) // 구매 가능
             {
                 StartCoroutine(IShowAlert(NoSlot, InventoryAlert));
 
@@ -91,8 +93,10 @@ public class BuyCharacter : MonoBehaviour
                 DataController.Instance.gameData.heart = heart;
                 DataController.Instance.gameData.slots = slots;
                 DataController.Instance.gameData.itemCntInInventory = itemCntInInventory;
+
+                addExp();
             }
-            else
+            else // 구매 불가능
             {
                 StartCoroutine(IShowAlert(NoSlot, CrystalAlert));
             }
@@ -100,7 +104,7 @@ public class BuyCharacter : MonoBehaviour
         else
         {
             print(crystalCnt);
-            if (crystalCnt - price >= 0)
+            if (crystalCnt - price >= 0) // 구매 가능
             {
                 // 수룡이 위치 랜덤 생성
                 Vector3 pos = range.transform.position;
@@ -136,8 +140,10 @@ public class BuyCharacter : MonoBehaviour
 
                 DataController.Instance.gameData.mains = mains;
                 DataController.Instance.gameData.itemCntInMain = itemCntInMain;
+
+                addExp();
             }
-            else
+            else // 구매 불가능
             {
                 print("부족");
                 StartCoroutine(IShowAlert(NoSlot, CrystalAlert));
@@ -157,5 +163,15 @@ public class BuyCharacter : MonoBehaviour
         yield return new WaitForSeconds(2f);
         obj1.SetActive(false);
         obj2.SetActive(false);
+    }
+
+    void addExp()
+    {
+        DataController.Instance.LoadGameData();
+        userExp = DataController.Instance.gameData.userExp;
+        DataController.Instance.gameData.userExp = userExp + 10;
+        DataController.Instance.SaveGameData();
+
+        UserLevel.updateExp();
     }
 }

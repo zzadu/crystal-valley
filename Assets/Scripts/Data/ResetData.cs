@@ -10,6 +10,13 @@ public class ResetData : MonoBehaviour
         DataController.Instance.LoadGameData();
         // ResetDatas();
 
+        // 경험치
+        if (DataController.Instance.gameData.userLevel == 0)
+            DataController.Instance.gameData.userLevel = 1;
+
+        if (DataController.Instance.gameData.maxUserExp == 0)
+            DataController.Instance.gameData.maxUserExp = 30;
+
         // 홈 아이템 목록
         if (DataController.Instance.gameData.mains.Length == 0)
         {
@@ -59,6 +66,9 @@ public class ResetData : MonoBehaviour
         DataController.Instance.gameData.itemCntInInventory = 0;
         DataController.Instance.gameData.heart = new int[52];
         DataController.Instance.gameData.heart = Enumerable.Repeat<int>(0, 52).ToArray<int>();
+        DataController.Instance.gameData.userLevel = 1;
+        DataController.Instance.gameData.maxUserExp = 30;
+        DataController.Instance.gameData.userExp = 0;
 
         DataController.Instance.SaveGameData();
     }

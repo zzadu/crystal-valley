@@ -37,6 +37,7 @@ public class GameData
     // 사용자
     public int userLevel; // 1부터 시작
     public int userExp; // 0부터 시작
+    public double maxUserExp; // 경험치 30, 레벨업 시 경험치*1.5
 
     // 구매 가능한 수룡이
     public int canBuy; // 0~51
