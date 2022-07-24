@@ -75,6 +75,7 @@ public class ResetData : MonoBehaviour
         DataController.Instance.gameData.crystalAddByLevel = 0;
         DataController.Instance.gameData.intervalAddByLevel = 0;
         DataController.Instance.gameData.inventoryCnt = 12;
+        DataController.Instance.gameData.AddCrystalPrice = 0;
 
         DataController.Instance.SaveGameData();
     }
