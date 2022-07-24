@@ -31,7 +31,6 @@ public class UserLevel : MonoBehaviour
 
     public static void updateExp()
     {
-        DataController.Instance.LoadGameData();
         userExp = DataController.Instance.gameData.userExp;
         maxUserExp = DataController.Instance.gameData.maxUserExp;
         userLevel = DataController.Instance.gameData.userLevel;
@@ -67,5 +66,20 @@ public class UserLevel : MonoBehaviour
         levelup.rectTransform.localScale = new Vector3(1f, 1f, 1f);
 
         levelup.gameObject.SetActive(false);
+
+        DataController.Instance.gameData.userLevel = userLevel;
+        DataController.Instance.SaveGameData();
+    }
+
+    public static void FeedExp()
+    {
+        DataController.Instance.LoadGameData();
+        userExp = DataController.Instance.gameData.userExp;
+
+        userExp += 5;
+
+        DataController.Instance.gameData.userExp = userExp;
+        DataController.Instance.SaveGameData();
+        updateExp();
     }
 }

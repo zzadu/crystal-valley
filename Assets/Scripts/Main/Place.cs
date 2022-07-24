@@ -14,13 +14,10 @@ public class Place : MonoBehaviour
 
     private void Start()
     {
-        // 메인 초기화
-        // DataController.Instance.gameData.mains = new int[40];
-        // DataController.Instance.gameData.itemCntInMain = 0;
-
         DataController.Instance.LoadGameData();
         // 홈 아이템 개수
         itemCntInMain = DataController.Instance.gameData.itemCntInMain;
+        print(itemCntInMain);
 
         // 홈 아이템 목록
         mains = DataController.Instance.gameData.mains;

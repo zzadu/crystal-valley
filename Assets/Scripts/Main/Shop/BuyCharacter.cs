@@ -167,7 +167,6 @@ public class BuyCharacter : MonoBehaviour
 
     void addExp()
     {
-        DataController.Instance.LoadGameData();
         userExp = DataController.Instance.gameData.userExp;
         DataController.Instance.gameData.userExp = userExp + 10;
         DataController.Instance.SaveGameData();
