@@ -49,6 +49,8 @@ public class UserLevel : MonoBehaviour
             DataController.Instance.gameData.userExp = userExp;
             DataController.Instance.gameData.maxUserExp = maxUserExp;
             DataController.Instance.SaveGameData();
+
+            Crystal.LevelUp();
         }
     }
 

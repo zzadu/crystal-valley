@@ -83,8 +83,8 @@ public class Heart : MonoBehaviour
 
             heartTxt.text = heart[UIFollowCharacter.select - 1].ToString();
 
-            UserLevel.FeedExp(); // 경험치 증가
             DataController.Instance.SaveGameData();
+            UserLevel.FeedExp(); // 경험치 증가
         }
         else
         {

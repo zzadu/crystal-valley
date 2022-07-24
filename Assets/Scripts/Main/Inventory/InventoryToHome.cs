@@ -68,6 +68,7 @@ public class InventoryToHome : MonoBehaviour
             su.transform.position = spawnPos;
 
             // 클론 이름 변경
+            print(InventoryEvent.select);
             su.name = (InventoryEvent.select).ToString();
 
             gameObject.SetActive(false);

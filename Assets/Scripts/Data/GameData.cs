@@ -50,4 +50,7 @@ public class GameData
 
     // 음식 개수
     public int foodCnt;
+
+    // 획득 재화 증가 아이템 가격
+    public int AddCrystalPrice;
 }

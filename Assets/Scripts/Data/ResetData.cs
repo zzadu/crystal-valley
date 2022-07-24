@@ -49,6 +49,9 @@ public class ResetData : MonoBehaviour
         // ≈« Ω√ ¡ı∞°∑Æ
         if (DataController.Instance.gameData.crystalAddByLevel == 0)
             DataController.Instance.gameData.crystalAddByLevel = 10;
+
+        if (DataController.Instance.gameData.AddCrystalPrice == 0)
+            DataController.Instance.gameData.AddCrystalPrice = 100;
     }
 
     public static void ResetDatas()
@@ -69,6 +72,9 @@ public class ResetData : MonoBehaviour
         DataController.Instance.gameData.userLevel = 1;
         DataController.Instance.gameData.maxUserExp = 30;
         DataController.Instance.gameData.userExp = 0;
+        DataController.Instance.gameData.crystalAddByLevel = 0;
+        DataController.Instance.gameData.intervalAddByLevel = 0;
+        DataController.Instance.gameData.inventoryCnt = 12;
 
         DataController.Instance.SaveGameData();
     }
