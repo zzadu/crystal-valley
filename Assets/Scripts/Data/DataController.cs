@@ -50,7 +50,7 @@ public class DataController : MonoBehaviour
         string filePath = Application.persistentDataPath + GameDataFileName;
 
         if (File.Exists(filePath)) {
-            print("불러오기 성공");
+            // print("불러오기 성공");
             string FromJsonData = File.ReadAllText(filePath);
             _gameData = JsonUtility.FromJson<GameData>(FromJsonData);
         }
@@ -66,7 +66,7 @@ public class DataController : MonoBehaviour
 
         File.WriteAllText(filePath, ToJsonData);
 
-        print("저장 완료");
+        // print("저장 완료");
     }
 
     private void OnApplicationQuit() {

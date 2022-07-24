@@ -12,8 +12,8 @@ public class Crystal : MonoBehaviour
 
     float interval = 10f;
 
-    int crystalAddByLevel;
-    int intervalAddByLevel;
+    static int crystalAddByLevel;
+    static int intervalAddByLevel;
 
     public Text crystalDisplay;
 
@@ -73,10 +73,11 @@ public class Crystal : MonoBehaviour
         }
 
         DataController.Instance.gameData.intervalAddByLevel = intervalAddByLevel;
+        DataController.Instance.SaveGameData();
     }
 
     // 레벨업 시 증가량 증가
-    public void LevelUp()
+    public static void LevelUp()
     {
         crystalAddByLevel = DataController.Instance.gameData.crystalAddByLevel;
 
@@ -100,6 +101,7 @@ public class Crystal : MonoBehaviour
 
     private void Update()
     {
+        DataController.Instance.LoadGameData();
         DataController.Instance.gameData.crystalCnt = crystalCnt;
     }
 }
