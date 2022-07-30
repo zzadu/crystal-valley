@@ -91,6 +91,27 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   mosaicSpriteImportData: []
   rigSpriteImportData:
+  - name: "\uBCA1\uD130 \uACE0\uAE09 \uAC1C\uCCB4"
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 2438
+      y: 3637
+      width: 769
+      height: 397
+    spriteID: 1c91f1bf718623544a3a055ca2ab0b19
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: 1686, y: 952}
   - name: "\uCC45"
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -5104,8 +5125,8 @@ ScriptedImporter:
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 2438
-      y: 3637
+      x: 1284
+      y: 3050
       width: 675
       height: 400
     spriteID: 92edfa83a60a3524ba09d30f33eb9f06
@@ -5465,7 +5486,7 @@ ScriptedImporter:
     - {x: 28, y: 29}
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: 1319, y: 2828}
+    uvTransform: {x: 165, y: 2241}
   characterData:
     bones:
     - name: bone_1
@@ -5658,6 +5679,16 @@ ScriptedImporter:
   resliceFromLayer: 0
   mosaicPSDLayers: []
   rigPSDLayers:
+  - name: "\uBCA1\uD130 \uACE0\uAE09 \uAC1C\uCCB4"
+    spriteName: "\uBCA1\uD130 \uACE0\uAE09 \uAC1C\uCCB4"
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 1c91f1bf718623544a3a055ca2ab0b19
+    layerID: 93
+    mosaicPosition: {x: 2438, y: 3637}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
   - name: "\uCC45"
     spriteName: "\uCC45"
     isGroup: 0
@@ -5744,7 +5775,7 @@ ScriptedImporter:
     parentIndex: -1
     spriteID: 92edfa83a60a3524ba09d30f33eb9f06
     layerID: 52
-    mosaicPosition: {x: 2438, y: 3637}
+    mosaicPosition: {x: 1284, y: 3050}
     flatten: 0
     isImported: 1
     isVisible: 1

@@ -91,6 +91,27 @@ ScriptedImporter:
     uvTransform: {x: 0, y: 0}
   mosaicSpriteImportData: []
   rigSpriteImportData:
+  - name: "\uBD84\uD544\uD1B5"
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 7757
+      width: 974
+      height: 402
+    spriteID: 6d0d68c43009298429916208b4d7966b
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    parentGroupIndex: -1
+    uvTransform: {x: -693, y: 6819}
   - name: "\uBCA1\uD130 \uACE0\uAE09 \uAC1C\uCCB4"
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -7380,6 +7401,16 @@ ScriptedImporter:
   resliceFromLayer: 0
   mosaicPSDLayers: []
   rigPSDLayers:
+  - name: "\uBD84\uD544\uD1B5"
+    spriteName: "\uBD84\uD544\uD1B5"
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 6d0d68c43009298429916208b4d7966b
+    layerID: 193
+    mosaicPosition: {x: 4, y: 7757}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
   - name: "\uBCA1\uD130 \uACE0\uAE09 \uAC1C\uCCB4"
     spriteName: "\uBCA1\uD130 \uACE0\uAE09 \uAC1C\uCCB4"
     isGroup: 0
